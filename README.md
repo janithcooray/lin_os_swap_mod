@@ -28,8 +28,14 @@ To verify if the SWAP is enabled, follow these steps:
 3. Type "htop" in the terminal app
 4. If you see a value above 4GB, then the SWAP is successfully enabled
 
+## Does Not touch ZRAM config
+this module unlike others, does not touch the devices ZRAM config, rather runs along side.
+if you run `cat /proc/swaps`, you will see 2.
+
 ## Best Results
 For optimal results, open a few apps and keep them running for a few hours. The performance improvement is highly conditional.
+
+The biggest difference i noticed in my case was battery life and less lag.
 
 ## Device Testing
 This module has been tested on Lineage 20 with a device having 4GB RAM. With an additional 8GB SWAP, the device was capable of running more apps and it felt like having more than 4GB RAM. Additionally, improved battery performance was observed. The average memory usage dropped from 89% to 65% with over 30 apps in the recent apps list and using a bulky Gapps package with all the future flags set to true.
