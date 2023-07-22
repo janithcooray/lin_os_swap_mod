@@ -11,4 +11,4 @@ sysctl vm.swappiness=75
 echo "-------------------" >> /data/swap/swapfile.log
 now=$(date)
 echo "$now" >> /data/swap/swapfile.log
-/system/bin/swapon -p 0 /data/swap/swapfile >> /data/swap/swapfile.log
+/system/bin/swapon /data/swap/swapfile >> /data/swap/swapfile.log

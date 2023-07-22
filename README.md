@@ -49,3 +49,7 @@ If you find this module useful, please consider starring the repository on GitHu
 
 ## Issues
 if you encounter any issues, please open an issue from github at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
+
+## Update
+
+`2023-07-22` - Version `1.1` - Updated SWAP Priority to auto and less then ZRAM
