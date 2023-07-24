@@ -1,6 +1,6 @@
-# LineageOS 14+ Swapfile Mod
+# Android 7+ Swapfile Mod
 
-This Magisk module enables or increases the SWAP memory by an additional 4GB or 8GB for Lineage OS 14 or above. It should also work with AOSP and other ROMs, but it has only been tested on Lineage OS.
+This Magisk module enables or increases the SWAP memory by an additional 4GB or 8GB for Android 7.0 or above. It should also work with AOSP based ROMs, but it has only been tested on Lineage OS, ASOP and EVOX.
 
 ## Installation Steps
 1. Download the ZIP file for this module
@@ -11,6 +11,10 @@ This Magisk module enables or increases the SWAP memory by an additional 4GB or 
 ## Choose SWAP Size
 - If the volume key is detected, you can choose between a 4GB or 8GB SWAP size
 - If the volume key is not detected, the module will use a 4GB SWAP size by default
+
+## Choose SWAP Priority
+- If the volume key is detected, you can choose between the Highest or auto SWAP Priority
+- If the volume key is not detected, the module will use auto SWAP Priority by default
 
 ## No init.d Support Required
 This module does not require init.d support for its operation.
