@@ -51,6 +51,10 @@ To uninstall the module, simply deactivate the module in Magisk and then reboot 
 If you find this module useful, please consider starring the repository on GitHub:
 [https://github.com/janithcooray/lin_os_swap_mod](https://github.com/janithcooray/lin_os_swap_mod)
 
+## Contribution
+Fork this repository, create a new branch (example - dev/feature-name) and commit your changes, test and verify if they are functional.
+once you confirm, please open a pull request from your forked branch to the source branch and assign @janithcooray to review. ill be testing them manually before merging it.
+
 ## Issues
 if you encounter any issues, please open an issue from github at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
 
