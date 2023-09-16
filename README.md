@@ -1,6 +1,14 @@
-# Android 7+ Swapfile Mod
+![linos jpg](https://github.com/janithcooray/lin_os_swap_mod/assets/50979590/55e98a40-9b04-4a72-8e1b-a59b394c7f10)
 
+<div align="center">
+  <h1>
+    Android 7+ Swapfile Mod
+  </h1>
+</div>
 This Magisk module enables or increases the SWAP memory by an additional 4GB or 8GB for Android 7.0 or above. It should also work with AOSP based ROMs, but it has only been tested on Lineage OS, ASOP and EVOX.
+
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/BlazeIsClone/A41SLBOT/commits/master)
+[![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](https://github.com/BlazeIsClone/A41SLBOT/blob/master/LICENSE.txt)
 
 ## Installation Steps
 1. Download the ZIP file for this module
