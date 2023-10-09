@@ -7,6 +7,9 @@
 </div>
 This Magisk module enables or increases the SWAP memory by an additional 4GB or 8GB for Android 7.0 or above. It should also work with AOSP based ROMs, but it has only been tested on Lineage OS, ASOP and EVOX.
 
+Tested Versions : Android 7 - 13
+Android 14 Support is currently being tested
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/BlazeIsClone/A41SLBOT/commits/master)
 [![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](https://github.com/BlazeIsClone/A41SLBOT/blob/master/LICENSE.txt)
 
