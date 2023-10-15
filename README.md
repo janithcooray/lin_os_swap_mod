@@ -76,6 +76,8 @@ if you encounter any issues, please open an issue from github at https://github.
 
 ## Update
 
+`2023-10-15` - Version `1.3` - Increased Swappiness to fix usage issues
+
 `2023-07-25` - Version `1.2` - Added Option to choose RAM Priority over ZRAM
 
 `2023-07-22` - Version `1.1` - Updated SWAP Priority to auto and less then ZRAM

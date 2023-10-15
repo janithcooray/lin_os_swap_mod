@@ -5,7 +5,7 @@ MODDIR=${0%/*}
 
 rm /data/swap/swapfile.log
 
-sysctl vm.swappiness=75
+sysctl vm.swappiness=99
 
 echo "-------------------" >> /data/swap/swapfile.log
 
