@@ -72,9 +72,10 @@ Fork this repository, create a new branch (example - dev/feature-name) and commi
 once you confirm, please open a pull request from your forked branch to the source branch and assign @janithcooray to review. ill be testing them manually before merging it.
 
 ## Issues
-if you encounter any issues, please open an issue from github at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
+if you encounter any issues, please open an issue from GitHub at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
 
 ## Update
+`2024-02-10` (Scheduled) - Version `2.0` - Adding App to manage Config and separate Prebuilt Configs on install + Bug fixes
 
 `2023-10-15` - Version `1.3` - Increased Swappiness to fix usage issues
 
