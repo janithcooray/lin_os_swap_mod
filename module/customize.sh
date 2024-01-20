@@ -12,7 +12,7 @@ if [ ! -f $MODPATH/addon/keycheck ]; then
     abort "   Files not copied!"
 fi
 
-# Setting permisions
+# Setting permissions
 set_perm_recursive $MODPATH 0 0 0755 0644
 
 # Load utility functions
@@ -54,7 +54,7 @@ function create_swapfile(){
     swapoff /data/swap/swapfile
     rm -rf /data/swap
     mkdir /data/swap
-    ui_print "- Crating a swpafile of $SWAP_BIN_SIZE MB"
+    ui_print "- Crating a swapfile of $SWAP_BIN_SIZE MB"
     ui_print "  This can take a minute or two"
     cd /data/swap && dd if=/dev/zero of=swapfile bs=1048576 count=$SWAP_BIN_SIZE
     ui_print "- Empty File for Swap of size $SWAP_BIN_SIZE MB Created!!"
@@ -64,7 +64,7 @@ function create_swapfile(){
 
 # Enable Swapfile settings
 function enable_swapfile(){
-    ui_print "- Setting Swappiness to 75"
+    ui_print "- Setting Swappiness to 99"
     sysctl vm.swappiness=75
     echo $OVER_ZRAM_PRIOR > /data/swap/OVER_ZRAM_PRIOR
     ui_print "- Now Reboot and see if it works!!"
@@ -72,8 +72,8 @@ function enable_swapfile(){
 
 # Start install
 function custom_install() {
-    ui_print "- Please keep the screen on during installtion"
-    ui_print "- Version 1.2"
+    ui_print "- Please keep the screen on during installation"
+    ui_print "- Version 1.3"
     ui_print "- Testing Volume keys... (10 Second timeout)"
     if keytest; then
         ui_print "- Using chooseport method for Volume keys"
