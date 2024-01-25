@@ -40,10 +40,10 @@ function ask_zram_prior(){
     ui_print "   Vol Down += No "
     if $VKSEL; then
         ui_print "  Setting to 0"
-        OVER_ZRAM_PRIOR=1
+        OVER_ZRAM_PRIOR=0
     else
         ui_print "  Setting to auto"
-        OVER_ZRAM_PRIOR=0
+        OVER_ZRAM_PRIOR=1
     fi
 }
 
@@ -65,7 +65,7 @@ function create_swapfile(){
 # Enable Swapfile settings
 function enable_swapfile(){
     ui_print "- Setting Swappiness to 99"
-    sysctl vm.swappiness=75
+    sysctl vm.swappiness=99
     echo $OVER_ZRAM_PRIOR > /data/swap/OVER_ZRAM_PRIOR
     ui_print "- Now Reboot and see if it works!!"
 }
