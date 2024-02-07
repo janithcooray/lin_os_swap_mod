@@ -50,11 +50,11 @@ function ask_zram_prior(){
 # Create Swapfile
 function create_swapfile(){
     ui_print "- Trying to stop Existing Swapfile"
-    ui_print "  (This can take a few minutes, do not panic if it looks stuck)"
+    ui_print "  (This can take a long time, do not panic if it looks stuck)"
     swapoff /data/swap/swapfile
     rm -rf /data/swap
     mkdir /data/swap
-    ui_print "- Crating a swapfile of $SWAP_BIN_SIZE MB"
+    ui_print "- Creating a swapfile of $SWAP_BIN_SIZE MB"
     ui_print "  This can take a minute or two"
     cd /data/swap && dd if=/dev/zero of=swapfile bs=1048576 count=$SWAP_BIN_SIZE
     ui_print "- Empty File for Swap of size $SWAP_BIN_SIZE MB Created!!"
