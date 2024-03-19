@@ -40,10 +40,10 @@ function ask_zram_prior(){
     ui_print "   Vol Down += No "
     if $VKSEL; then
         ui_print "  Setting to 0"
-        OVER_ZRAM_PRIOR=0
+        OVER_ZRAM_PRIOR=1
     else
         ui_print "  Setting to auto"
-        OVER_ZRAM_PRIOR=1
+        OVER_ZRAM_PRIOR=0
     fi
 }
 
