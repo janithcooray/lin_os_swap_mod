@@ -9,9 +9,7 @@ This Magisk module enables or increases the SWAP memory by an additional 4GB or 
 
 #
 
-Tested Versions : Android 7 - 13
-
-Android 14 Support is currently being tested
+Tested Versions : Android 7 - 14
 
 #
 
