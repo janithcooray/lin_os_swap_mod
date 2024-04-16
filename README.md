@@ -75,7 +75,7 @@ Once you confirm, please open a pull request from your forked branch to the sour
 If you encounter any issues, please open an issue from GitHub at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
 
 ## Update
-`2024-02-10` (Scheduled) - Version `2.0` - Adding App to manage Config and separate Prebuilt Configs on install + Bug fixes
+`2024-03-10` (Pending) - Version `2.0` - Adding App to manage Config and separate Prebuilt Configs on install + Bug fixes
 
 `2023-10-15` - Version `1.3` - Increased Swappiness to fix usage issues
 
