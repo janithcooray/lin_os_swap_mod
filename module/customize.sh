@@ -35,11 +35,11 @@ function ask_install(){
 
 # Option - Select Swap Priority
 function ask_zram_prior(){
-    ui_print "  Set Swap Priority above Zram?"
+    ui_print "  Set Swap Priority lower?"
     ui_print "   Vol Up += Yes"
     ui_print "   Vol Down += No "
     if $VKSEL; then
-        ui_print "  Setting to 0"
+        ui_print "  Setting to Low"
         OVER_ZRAM_PRIOR=1
     else
         ui_print "  Setting to auto"

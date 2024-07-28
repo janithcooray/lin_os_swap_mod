@@ -1,7 +1,7 @@
 id=lin_os_swap_mod
 name=Lineage OS SWAP mod
-version=v1.3.1
-versionCode=6
+version=v1.4
+versionCode=7
 author=janithcooray
 description=Enable / Change Swap config for Android 7+
 template=3

@@ -8,15 +8,11 @@ rm /data/swap/swapfile.log
 sysctl vm.swappiness=99
 
 echo "-------------------" >> /data/swap/swapfile.log
-
 now=$(date)
-
 echo "$now" >> /data/swap/swapfile.log
-
 OVER_ZRAM_PRIOR="$(cat /data/swap/OVER_ZRAM_PRIOR)"
-
 if [[ "$OVER_ZRAM_PRIOR" -eq 1 ]]; then
-    /system/bin/swapon -p 0 /data/swap/swapfile >> /data/swap/swapfile.log
+    /system/bin/swapon -p -99999 /data/swap/swapfile >> /data/swap/swapfile.log
 else
     /system/bin/swapon /data/swap/swapfile >> /data/swap/swapfile.log
 fi
