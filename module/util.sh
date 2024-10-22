@@ -59,7 +59,7 @@ chooseportold() {
                 print "  Selected: Volume Up"
                 print ""
             fi
-            sed -i -e "s/${CURR} \[\-/${CURR} \[\O/g" $logfile
+            sed -i -e "s/${CURR} \[\-/${CURR} \[\O/g" $ 
             return 0
         elif [ $SEL -eq $DOWN ]; then
             if [ $TURN_OFF_SEL_VOL_PROMPT -eq 0 ]; then

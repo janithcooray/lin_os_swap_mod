@@ -19,76 +19,40 @@ set_perm_recursive $MODPATH 0 0 0755 0644
 . $MODPATH/util.sh || abort
 . $MODPATH/vars.sh || abort
 
-# Option - Select 8GB or 4GB
-function ask_install(){
-    ui_print "  Select the Swap File size"
-    ui_print "   Vol Up += 8GB"
-    ui_print "   Vol Down += 4GB"
-    if $VKSEL; then
-        ui_print "  Using 8GB"
-        SWAP_BIN_SIZE=8192
-    else
-        ui_print "  Using 4GB"
-        SWAP_BIN_SIZE=4096
-    fi
-}
-
-# Option - Select Swap Priority
-function ask_zram_prior(){
-    ui_print "  Set Swap Priority lower?"
-    ui_print "   Vol Up += Yes"
-    ui_print "   Vol Down += No "
-    if $VKSEL; then
-        ui_print "  Setting to Low"
-        OVER_ZRAM_PRIOR=1
-    else
-        ui_print "  Setting to auto"
-        OVER_ZRAM_PRIOR=0
-    fi
-}
-
 # Create Swapfile
 function create_swapfile(){
     ui_print "- Trying to stop Existing Swapfile"
     ui_print "  (This can take a long time, do not panic if it looks stuck)"
     swapoff /data/swap/swapfile
+    ui_print "- [OK]"
     rm -rf /data/swap
     mkdir /data/swap
     ui_print "- Creating a swapfile of $SWAP_BIN_SIZE MB"
-    ui_print "  This can take a minute or two"
+    ui_print "  This can take a minute or two..."
     cd /data/swap && dd if=/dev/zero of=swapfile bs=1048576 count=$SWAP_BIN_SIZE
-    ui_print "- Empty File for Swap of size $SWAP_BIN_SIZE MB Created!!"
+    ui_print "- [OK]"
+    ui_print "- Making Swapfile..."
     cd /data/swap && mkswap swapfile
-    ui_print "- Making Swapfile!!!"
+    ui_print "- [OK]"
 }
 
 # Enable Swapfile settings
 function enable_swapfile(){
-    ui_print "- Setting Swappiness to 99"
-    sysctl vm.swappiness=99
-    echo $OVER_ZRAM_PRIOR > /data/swap/OVER_ZRAM_PRIOR
+    ui_print "- Setting Swappiness to $SWAPPINESS"
+    sysctl vm.swappiness=$SWAPPINESS
+    echo $SWAP_FILE_PRIOR > /data/swap/SWAP_FILE_PRIOR
+    echo $SWAPPINESS > /data/swap/SWAPPINESS
     ui_print "- Now Reboot and see if it works!!"
 }
 
 # Start install
 function custom_install() {
     ui_print "- Please keep the screen on during installation"
-    ui_print "- Version 1.3"
-    ui_print "- Testing Volume keys... (10 Second timeout)"
-    if keytest; then
-        ui_print "- Using chooseport method for Volume keys"
-        VKSEL=chooseport
-        ask_install
-    else
-        ui_print "- Unable to detect Keys!"
-        ui_print "- Using Default $SWAP_BIN_SIZE MB, if you want to change this,"
-        ui_print "  Unzip this module, and edit the file vars.sh"
-        ui_print "  and change the value of 'SWAP_BIN_SIZE'='xxxx'(MB)"
-        ui_print "  zip the file and flash again"
-        ui_print "  Using Default Swap Priority - auto"
-    fi
+    ui_print "- Version $SWAP_MOD_VERSION"
+    ui_print "- SWAP-SIZE: $SWAP_BIN_SIZE (MB)"
+    ui_print "- SWAPPINESS: $SWAPPINESS"
+    ui_print "- SWAP_FILE_PRIOR: $SWAPPINESS"
     create_swapfile
-    ask_zram_prior
     enable_swapfile
 }
 

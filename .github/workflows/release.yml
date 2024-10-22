@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  release:
+    types: [published,created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          apt-get install -y zip
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Upload ZIP files
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-zips
+          path: release/*.zip

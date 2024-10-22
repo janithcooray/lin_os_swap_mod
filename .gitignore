@@ -1,2 +1,4 @@
 .DS_Store
 *.zip
+release/
+module/module.prop
