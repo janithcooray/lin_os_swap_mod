@@ -25,3 +25,11 @@ jobs:
           files: release/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Legacy Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+           swapfile_mod.zip
+           lin_os_swap_mod.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
