@@ -20,9 +20,9 @@ jobs:
           ./build.sh
 
       - name: Upload Release Assets
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag: ${{ github.ref }} # Use the tag that triggered the workflow
-        files: release/*.zip
+          files: release/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
