@@ -2,7 +2,7 @@ name: Release
 
 on:
   release:
-    types: [published,created ]
+    types: [created ]
 
 jobs:
   build:
@@ -19,8 +19,10 @@ jobs:
           chmod +x build.sh
           ./build.sh
 
-      - name: Upload ZIP files
-        uses: actions/upload-artifact@v3
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
         with:
-          name: release-zips
-          path: release/*.zip
+          tag: ${{ github.ref }} # Use the tag that triggered the workflow
+        files: release/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
