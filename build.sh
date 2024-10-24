@@ -35,7 +35,7 @@ for FILE in "config"/*.sh; do
         echo "version=$MODFILE_VERSION" >> $REPO_TOPLEVEL/module/module.prop
         echo "versionCode=$MODFILE_VERCODE" >> $REPO_TOPLEVEL/module/module.prop
         # Update JSON File
-        echo "{\"version\": $MODFILE_VERSION,\"versionCode\": $MODFILE_VERCODE," > "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
+        echo "{\"version\": '$MODFILE_VERSION',\"versionCode\": $MODFILE_VERCODE," > "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
         echo "\"zipUrl\": \"https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/$VARIENT_NAME.zip\",\"changelog\": \"https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/CHANGELOG.md\"}" >> "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
         echo "updateJson=https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/$VARIENT_NAME.json" >> $REPO_TOPLEVEL/module/module.prop
 
