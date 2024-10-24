@@ -31,5 +31,6 @@ jobs:
           files: |
            swapfile_mod.zip
            lin_os_swap_mod.zip
+           release/*.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
