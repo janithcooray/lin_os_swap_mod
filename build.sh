@@ -9,8 +9,8 @@
 # - zip
 
 # Don't forget to increment these
-MODFILE_VERSION="v2.0-a"
-MODFILE_VERCODE="8"
+MODFILE_VERSION="v2.0-b"
+MODFILE_VERCODE="9"
 
 set -eu
 REPO_TOPLEVEL=$(git rev-parse --show-toplevel)
@@ -24,8 +24,6 @@ rm -f swapfile_mod.zip
 rm -rf $REPO_TOPLEVEL/release
 rm -f $REPO_TOPLEVEL/module/module.prop
 
-
-
 mkdir ./release
 
 for FILE in "config"/*.sh; do
@@ -38,7 +36,7 @@ for FILE in "config"/*.sh; do
         echo "versionCode=$MODFILE_VERCODE" >> $REPO_TOPLEVEL/module/module.prop
         # Update JSON File
         echo "{\"version\": $MODFILE_VERSION,\"versionCode\": $MODFILE_VERCODE," > "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
-        echo "\"zipUrl\": \"https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/$VARIENT_NAME.zip\",\"changelog\": url}" >> "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
+        echo "\"zipUrl\": \"https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/$VARIENT_NAME.zip\",\"changelog\": \"https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/CHANGELOG.md\"}" >> "$REPO_TOPLEVEL/release/$VARIENT_NAME.json"
         echo "updateJson=" >> "https://github.com/janithcooray/lin_os_swap_mod/releases/latest/download/$VARIENT_NAME.json"
 
         rm -f "$REPO_TOPLEVEL/release/$VARIENT_NAME.zip";
