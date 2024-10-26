@@ -9,8 +9,8 @@
 # - zip
 
 # Don't forget to increment these
-MODFILE_VERSION="v2.0-b"
-MODFILE_VERCODE="9"
+MODFILE_VERSION="v2.0-c-debug"
+MODFILE_VERCODE="10"
 
 set -eu
 REPO_TOPLEVEL=$(git rev-parse --show-toplevel)
