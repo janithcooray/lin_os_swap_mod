@@ -51,7 +51,7 @@ function custom_install() {
     ui_print "- Version $SWAP_MOD_VERSION"
     ui_print "- SWAP-SIZE: $SWAP_BIN_SIZE (MB)"
     ui_print "- SWAPPINESS: $SWAPPINESS"
-    ui_print "- SWAP_FILE_PRIOR: $SWAPPINESS"
+    ui_print "- SWAP_FILE_PRIOR: $SWAP_FILE_PRIOR"
     create_swapfile
     enable_swapfile
 }

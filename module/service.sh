@@ -12,17 +12,17 @@ function print_log(){
 function check_file(){
         print_log "Checking if $1 Exists"
     if [ -e $1 ]; then
-        echo "File exists."
+        print_log "File exists."
     else
-        echo "File does not exist."
+        print_log "File does not exist."
     fi
 }
 
 function check_bin(){
     if command -v $1 >/dev/null 2>&1; then
-        echo "$1 exists."
+        print_log "$1 exists."
     else
-        echo "$1 does not exist."
+        print_log "$1 does not exist."
     fi
 }
 
@@ -33,6 +33,7 @@ function check_bin(){
 check_file "/system/bin/swapon"
 check_bin "swapon"
 check_bin "sysctl"
+check_bin "whereis"
 
 if [ -e "/data/swap/INCOMPLETE" ]; then
     echo "$now : INCOMPLETE FILE still exists! Did it Fail to boot?" >> /data/swap/swapfile.log
@@ -43,9 +44,9 @@ else
     sysctl vm.swappiness=$SWAPPINESS
     # At this point if it fails, it will exit the script leaving /data/swap/INCOMPLETE
     if [[ "$SWAP_FILE_PRIOR" -eq 0 ]]; then
-        /system/bin/swapon /data/swap/swapfile >> /data/swap/swapfile.log
+        swapon /data/swap/swapfile >> /data/swap/swapfile.log
     else
-        /system/bin/swapon -p $SWAP_FILE_PRIOR /data/swap/swapfile >> /data/swap/swapfile.log
+        swapon -p $SWAP_FILE_PRIOR /data/swap/swapfile >> /data/swap/swapfile.log
     fi
 fi
 # Service BOOT OK!
