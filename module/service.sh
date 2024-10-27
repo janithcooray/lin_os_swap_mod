@@ -6,7 +6,7 @@ MODDIR=${0%/*}
 echo "----------BOOT---------" >> /data/swap/swapfile.log
 function print_log(){
     now=$(date)
-    echo "$now : $1 - $2" >> /data/swap/swapfile.log
+    echo "$now : $1 $2" >> /data/swap/swapfile.log
 }
 
 function check_file(){
@@ -36,18 +36,27 @@ check_bin "sysctl"
 check_bin "whereis"
 
 if [ -e "/data/swap/INCOMPLETE" ]; then
-    echo "$now : INCOMPLETE FILE still exists! Did it Fail to boot?" >> /data/swap/swapfile.log
+    print_log "Swap is disabled sue to fail safe mode. A previous session falied to start. Remove /data/swap/INCOMPLETE and reboot to disable."
 else
     echo "INCOMPLETE" >> /data/swap/INCOMPLETE
+    print_log "Preparing to start.."
     SWAP_FILE_PRIOR="$(cat /data/swap/SWAP_FILE_PRIOR)"
     SWAPPINESS="$(cat /data/swap/SWAPPINESS)"
+    print_log "setting swappiness.."
     sysctl vm.swappiness=$SWAPPINESS
     # At this point if it fails, it will exit the script leaving /data/swap/INCOMPLETE
+    print_log "[OK] setting swappiness.."
     if [[ "$SWAP_FILE_PRIOR" -eq 0 ]]; then
+        print_log "Starting swap with auto priority"
         swapon /data/swap/swapfile >> /data/swap/swapfile.log
+        print_log "No Errors Reported"
     else
+        print_log "Starting swap with $SWAP_FILE_PRIOR priority"
         swapon -p $SWAP_FILE_PRIOR /data/swap/swapfile >> /data/swap/swapfile.log
+        print_log "No Errors Reported"
     fi
 fi
+FREE_M="$(free -h)"
+print_log "Free Mem - " $FREE_M
 # Service BOOT OK!
 rm /data/swap/INCOMPLETE
