@@ -81,7 +81,9 @@ Once you confirm, please open a pull request from your forked branch to the sour
 If you encounter any issues, please open an issue from GitHub at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
 
 ## Update
-`2024-10-22` - Version `2.0` - Adding separate Prebuilt Configs on install + Bug fixes, Added Fail Safe option
+`2024-10-22` - Version `2.0-b beta` - Added More logging info, improved fail safe function
+
+`2024-10-22` - Version `2.0-a beta` - Adding separate Prebuilt Configs on install + Bug fixes, Added Fail Safe option
 
 `2023-10-15` - Version `1.3` - Increased Swappiness to fix usage issues
 
