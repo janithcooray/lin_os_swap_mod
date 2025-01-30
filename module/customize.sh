@@ -23,16 +23,16 @@ set_perm_recursive $MODPATH 0 0 0755 0644
 function create_swapfile(){
     ui_print "- Trying to stop Existing Swapfile"
     ui_print "  (This can take a long time, do not panic if it looks stuck)"
-    swapoff /data/swap/swapfile
+    swapoff $SWAP_FILE_PATH/swapfile
     ui_print "- [OK]"
-    rm -rf /data/swap
-    mkdir /data/swap
+    rm -rf $SWAP_FILE_PATH
+    mkdir $SWAP_FILE_PATH
     ui_print "- Creating a swapfile of $SWAP_BIN_SIZE MB"
     ui_print "  This can take a minute or two..."
-    cd /data/swap && dd if=/dev/zero of=swapfile bs=1048576 count=$SWAP_BIN_SIZE
+    cd $SWAP_FILE_PATH && dd if=/dev/zero of=swapfile bs=1048576 count=$SWAP_BIN_SIZE
     ui_print "- [OK]"
     ui_print "- Making Swapfile..."
-    cd /data/swap && mkswap swapfile
+    cd $SWAP_FILE_PATH && mkswap swapfile
     ui_print "- [OK]"
 }
 
@@ -40,8 +40,8 @@ function create_swapfile(){
 function enable_swapfile(){
     ui_print "- Setting Swappiness to $SWAPPINESS"
     sysctl vm.swappiness=$SWAPPINESS
-    echo $SWAP_FILE_PRIOR > /data/swap/SWAP_FILE_PRIOR
-    echo $SWAPPINESS > /data/swap/SWAPPINESS
+    echo $SWAP_FILE_PRIOR > $SWAP_FILE_PATH/SWAP_FILE_PRIOR
+    echo $SWAPPINESS > $SWAP_FILE_PATH/SWAPPINESS
     ui_print "- Now Reboot and see if it works!!"
 }
 
