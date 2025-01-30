@@ -1,2 +1,2 @@
-swapoff /data/swap/swapfile
-rm -rf /data/swap
+swapoff $SWAP_FILE_PATH/swapfile
+rm -rf $SWAP_FILE_PATH
