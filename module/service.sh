@@ -3,10 +3,10 @@
 # This will make your scripts compatible even if Magisk change its mount point in the future
 MODDIR=${0%/*}
 
-echo "----------BOOT---------" >> /data/swap/swapfile.log
+echo "----------BOOT---------" >> $SWAP_FILE_PATH/swapfile.log
 function print_log(){
     now=$(date)
-    echo "$now : $1 $2" >> /data/swap/swapfile.log
+    echo "$now : $1 $2" >> $SWAP_FILE_PATH/swapfile.log
 }
 
 function check_file(){
@@ -29,34 +29,34 @@ function check_bin(){
 # START BOOT SAFETY
 # We create a file before swap on and delete it after successful start
 # If the file exists on service boot, that means there has been an issue from the 
-# Module. Ask the user to share the /data/swap/swapfile.log file with devs
+# Module. Ask the user to share the $SWAP_FILE_PATH/swapfile.log file with devs
 check_file "/system/bin/swapon"
 check_bin "swapon"
 check_bin "sysctl"
 check_bin "whereis"
 
-if [ -e "/data/swap/INCOMPLETE" ]; then
-    print_log "Swap is disabled sue to fail safe mode. A previous session falied to start. Remove /data/swap/INCOMPLETE and reboot to disable."
+if [ -e "$SWAP_FILE_PATH/INCOMPLETE" ]; then
+    print_log "Swap is disabled sue to fail safe mode. A previous session falied to start. Remove $SWAP_FILE_PATH/INCOMPLETE and reboot to disable."
 else
-    echo "INCOMPLETE" >> /data/swap/INCOMPLETE
+    echo "INCOMPLETE" >> $SWAP_FILE_PATH/INCOMPLETE
     print_log "Preparing to start.."
-    SWAP_FILE_PRIOR="$(cat /data/swap/SWAP_FILE_PRIOR)"
-    SWAPPINESS="$(cat /data/swap/SWAPPINESS)"
+    SWAP_FILE_PRIOR="$(cat $SWAP_FILE_PATH/SWAP_FILE_PRIOR)"
+    SWAPPINESS="$(cat $SWAP_FILE_PATH/SWAPPINESS)"
     print_log "setting swappiness.."
     sysctl vm.swappiness=$SWAPPINESS
-    # At this point if it fails, it will exit the script leaving /data/swap/INCOMPLETE
+    # At this point if it fails, it will exit the script leaving $SWAP_FILE_PATH/INCOMPLETE
     print_log "[OK] setting swappiness.."
     if [[ "$SWAP_FILE_PRIOR" -eq 0 ]]; then
         print_log "Starting swap with auto priority"
-        swapon /data/swap/swapfile >> /data/swap/swapfile.log
+        swapon $SWAP_FILE_PATH/swapfile >> $SWAP_FILE_PATH/swapfile.log
         print_log "No Errors Reported"
     else
         print_log "Starting swap with $SWAP_FILE_PRIOR priority"
-        swapon -p $SWAP_FILE_PRIOR /data/swap/swapfile >> /data/swap/swapfile.log
+        swapon -p $SWAP_FILE_PRIOR $SWAP_FILE_PATH/swapfile >> $SWAP_FILE_PATH/swapfile.log
         print_log "No Errors Reported"
     fi
 fi
 FREE_M="$(free -h)"
 print_log "Free Mem - " $FREE_M
 # Service BOOT OK!
-rm /data/swap/INCOMPLETE
+rm $SWAP_FILE_PATH/INCOMPLETE
