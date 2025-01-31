@@ -3,6 +3,9 @@
 # This will make your scripts compatible even if Magisk change its mount point in the future
 MODDIR=${0%/*}
 
+# Load utility functions
+. $MODDIR/vars.sh || abort
+
 echo "----------BOOT---------" >> $SWAP_FILE_PATH/swapfile.log
 function print_log(){
     now=$(date)
@@ -40,8 +43,6 @@ if [ -e "$SWAP_FILE_PATH/INCOMPLETE" ]; then
 else
     echo "INCOMPLETE" >> $SWAP_FILE_PATH/INCOMPLETE
     print_log "Preparing to start.."
-    SWAP_FILE_PRIOR="$(cat $SWAP_FILE_PATH/SWAP_FILE_PRIOR)"
-    SWAPPINESS="$(cat $SWAP_FILE_PATH/SWAPPINESS)"
     print_log "setting swappiness.."
     sysctl vm.swappiness=$SWAPPINESS
     # At this point if it fails, it will exit the script leaving $SWAP_FILE_PATH/INCOMPLETE
