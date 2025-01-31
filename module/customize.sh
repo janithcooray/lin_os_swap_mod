@@ -40,8 +40,6 @@ function create_swapfile(){
 function enable_swapfile(){
     ui_print "- Setting Swappiness to $SWAPPINESS"
     sysctl vm.swappiness=$SWAPPINESS
-    echo $SWAP_FILE_PRIOR > $SWAP_FILE_PATH/SWAP_FILE_PRIOR
-    echo $SWAPPINESS > $SWAP_FILE_PATH/SWAPPINESS
     ui_print "- Now Reboot and see if it works!!"
 }
 
