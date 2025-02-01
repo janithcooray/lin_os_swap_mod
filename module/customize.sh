@@ -1,8 +1,16 @@
-MODID=lin_os_swap_mod
+function getProperty {
+   PROP_KEY=$1
+   PROP_VALUE=`cat "${PROPERTY_FILE}" | grep -w "$PROP_KEY" | cut -d '=' -f 2 | tr -d '\n\r'`
+   echo $PROP_VALUE
+}
+
+PROPERTY_FILE=$MODPATH/module.prop
+MODID=$(getProperty "id")
 AUTOMOUNT=true
 PROPFILE=false
 POSTFSDATA=false
 LATESTARTSERVICE=true
+SWAP_MOD_VERSION=$(getProperty "version")
 
 # # Installation script
 chmod 0755 $MODPATH/*
