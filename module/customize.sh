@@ -7,16 +7,10 @@ LATESTARTSERVICE=true
 # # Installation script
 chmod 0755 $MODPATH/*
 
-#check if files are copied
-if [ ! -f $MODPATH/addon/keycheck ]; then
-    abort "   Files not copied!"
-fi
-
 # Setting permissions
 set_perm_recursive $MODPATH 0 0 0755 0644
 
 # Load utility functions
-. $MODPATH/util.sh || abort
 . $MODPATH/vars.sh || abort
 
 # Create Swapfile
