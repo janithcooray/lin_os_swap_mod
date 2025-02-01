@@ -28,6 +28,9 @@ function create_swapfile(){
     ui_print "- Making Swapfile..."
     cd $SWAP_FILE_PATH && mkswap swapfile
     ui_print "- [OK]"
+    ui_print "- Create uninstall.sh file..."
+    echo "swapoff $SWAP_FILE_PATH/swapfile" > $MODPATH/uninstall.sh
+    echo "rm -rf $SWAP_FILE_PATH" >> $MODPATH/uninstall.sh
 }
 
 # Enable Swapfile settings
