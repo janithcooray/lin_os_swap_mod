@@ -1,13 +1,19 @@
-[ ! "$MODPATH" ] && MODPATH=${0%/*}
-
 # functions
-. $MODPATH/vars.sh
+. $MODPATH/functions.sh
 
-MODID=lin_os_swap_mod
+# variables
+PARAMETERS=$MODPATH/parameters.prop
+
+MODID=`grep_prop id $MODPATH/module.prop`
+SWAP_MOD_VERSION=`grep_prop version $MODPATH/module.prop`
 AUTOMOUNT=true
 PROPFILE=false
 POSTFSDATA=false
 LATESTARTSERVICE=true
+SWAP_BIN_SIZE=`grep_prop SWAP_BIN_SIZE $PARAMETERS`
+SWAPPINESS=`grep_prop SWAPPINESS $PARAMETERS`
+SWAP_FILE_PRIOR=`grep_prop SWAP_FILE_PRIOR $PARAMETERS`
+SWAP_FILE_PATH=`grep_prop SWAP_FILE_PATH $PARAMETERS`
 
 # Installation script
 chmod 0755 $MODPATH/*
@@ -51,5 +57,5 @@ function custom_install() {
     enable_swapfile
 }
 
-# Custom installation
+# # Custom installation
 custom_install
