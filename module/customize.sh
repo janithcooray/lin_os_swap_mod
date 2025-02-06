@@ -1,7 +1,24 @@
+[ ! "$MODPATH" ] && MODPATH=${0%/*}
+
 # functions
 . $MODPATH/functions.sh
 
 # variables
+UID=`id -u`
+[ ! "$UID" ] && UID=0
+PARAMETERS=/data/media/"$UID"/parameters.prop
+if [ ! -f $PARAMETERS ]; then
+  echo "# SWAP FILE SIZE [2 - 999999]MB" >> $PARAMETERS
+  echo "SWAP_BIN_SIZE=8192" >> $PARAMETERS
+  echo "# SWAPPINESS [0 - 100]" >> $PARAMETERS
+  echo "SWAPPINESS=99" >> $PARAMETERS
+  echo "# SWAP PRIORITY [-999999 - 999999]" >> $PARAMETERS
+  echo "# 0 Will make it auto" >> $PARAMETERS
+  echo "SWAP_FILE_PRIOR=0" >> $PARAMETERS
+  echo "# SWAP FILE PATH" >> $PARAMETERS
+  echo "SWAP_FILE_PATH=/data/swap" >> $PARAMETERS
+fi
+cp -f $PARAMETERS $MODPATH/parameters.prop
 PARAMETERS=$MODPATH/parameters.prop
 
 MODID=`grep_prop id $MODPATH/module.prop`
