@@ -1,7 +1,11 @@
 [ ! "$MODPATH" ] && MODPATH=${0%/*}
 
 # functions
-. $MODPATH/vars.sh
+. $MODPATH/functions.sh
+
+# parameters
+PARAMETERS=$MODPATH/parameters.prop
+SWAP_FILE_PATH=`grep_prop SWAP_FILE_PATH $PARAMETERS`
 
 # stop swap and remove directory
 if [ "echo $SWAP_FILE_PATH" != "" ]; then
