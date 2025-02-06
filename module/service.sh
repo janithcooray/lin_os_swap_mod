@@ -1,16 +1,10 @@
 [ ! "$MODPATH" ] && MODPATH=${0%/*}
 
 # functions
-. $MODPATH/vars.sh
-
-echo "----------BOOT---------" >> $SWAP_FILE_PATH/swapfile.log
-function print_log(){
-    now=$(date)
-    echo "$now : $1 $2" >> $SWAP_FILE_PATH/swapfile.log
-}
+. $MODPATH/functions.sh
 
 function check_file(){
-        print_log "Checking if $1 Exists"
+    print_log "Checking if $1 Exists"
     if [ -e $1 ]; then
         print_log "File exists."
     else
@@ -26,10 +20,18 @@ function check_bin(){
     fi
 }
 
+# parameters
+PARAMETERS=$MODPATH/parameters.prop
+SWAPPINESS=`grep_prop SWAPPINESS $PARAMETERS`
+SWAP_FILE_PRIOR=`grep_prop SWAP_FILE_PRIOR $PARAMETERS`
+SWAP_FILE_PATH=`grep_prop SWAP_FILE_PATH $PARAMETERS`
+
+
 # START BOOT SAFETY
 # We create a file before swap on and delete it after successful start
 # If the file exists on service boot, that means there has been an issue from the 
 # Module. Ask the user to share the $SWAP_FILE_PATH/swapfile.log file with devs
+echo "----------BOOT---------" >> $SWAP_FILE_PATH/swapfile.log
 check_file "/system/bin/swapon"
 check_bin "swapon"
 check_bin "sysctl"
@@ -39,7 +41,6 @@ if [ -e "$SWAP_FILE_PATH/INCOMPLETE" ]; then
     print_log "Swap is disabled sue to fail safe mode. A previous session falied to start. Remove $SWAP_FILE_PATH/INCOMPLETE and reboot to disable."
 else
     echo "INCOMPLETE" >> $SWAP_FILE_PATH/INCOMPLETE
-    print_log "Preparing to start.."
     print_log "setting swappiness.."
     sysctl vm.swappiness=$SWAPPINESS
     # At this point if it fails, it will exit the script leaving $SWAP_FILE_PATH/INCOMPLETE
