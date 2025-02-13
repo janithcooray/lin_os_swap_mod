@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  release:
+    types: [created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Legacy Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+           swapfile_mod.zip
+           lin_os_swap_mod.zip
+           release/*.json
+           CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

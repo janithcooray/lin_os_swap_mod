@@ -9,28 +9,34 @@ This Magisk module enables or increases the SWAP memory by an additional 4GB or 
 
 #
 
-Tested Versions : Android 7 - 13
+Tested Versions : Android 7 - 14
 
-Android 14 Support is currently being tested
 
+Android 15 Pending
 #
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/BlazeIsClone/A41SLBOT/commits/master)
-[![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](https://github.com/BlazeIsClone/A41SLBOT/blob/master/LICENSE.txt)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/janithcooray/lin_os_swap_mod/commits/main/)
+[![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](https://github.com/janithcooray/lin_os_swap_mod/blob/main/LICENSE)
+
 
 ## Installation Steps
-1. Download the ZIP file for this module
+1. Download a Varient of this module from the latest release, choose the varient of your choice (more info below)
 2. Flash the ZIP file in Magisk v24 or above
-3. During the installation, it will ask you to press the volume key for an interactive install
-4. As soon as it prompts to press the volume key, do so
 
-## Choose SWAP Size
-- If the volume key is detected, you can choose between a 4GB or 8GB SWAP size
-- If the volume key is not detected, the module will use a 4GB SWAP size by default
 
-## Choose SWAP Priority
-- If the volume key is detected, you can choose between the Highest or auto SWAP Priority
-- If the volume key is not detected, the module will use auto SWAP Priority by default
+## Config Varients
+We have organized the configurations using the following naming scheme, which you will find in all v2+ releases. Simply download your desired variant and flash it. Each variant has its configuration hardcoded. To change the configuration, uninstall the previous module and flash the new one.
+
+The naming scheme is as follows:
+`v<SWAP_BIN_SIZE>-<SWAPPINESS>-<SWAP_FILE_PRIOR or AUTO>`
+
+- SWAP_BIN_SIZE - is the size of how big the file will be in MB
+- SWAPPINESS -  A value between 0 and 100. Higher values may improve battery life and allow more background apps but can slow app responsiveness and potentially wear out your storage device.
+- SWAP_FILE_PRIOR - Useful if your ROM includes a swap file. Higher values prioritize the new swap file.
+
+
+For Example, a 4096 SWAP_BIN_SIZE, 80% SWAPPINESS and SWAP_FILE_PRIOR as 1 would be called var_4096_80_1.sh. you will find these installation zips under assests on the release section.
+
 
 ## No init.d Support Required
 This module does not require init.d support for its operation.
@@ -69,13 +75,15 @@ If you find this module useful, please consider starring the repository on GitHu
 
 ## Contribution
 Fork this repository, create a new branch (example - dev/feature-name) and commit your changes, test and verify if they are functional.
-once you confirm, please open a pull request from your forked branch to the source branch and assign @janithcooray to review. ill be testing them manually before merging it.
+Once you confirm, please open a pull request from your forked branch to the source branch and assign @janithcooray to review. I'll be testing them manually before merging it.
 
 ## Issues
-if you encounter any issues, please open an issue from GitHub at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
+If you encounter any issues, please open an issue from GitHub at https://github.com/janithcooray/lin_os_swap_mod/issues/new i will try to patch them asap.
 
 ## Update
-`2024-02-10` (Scheduled) - Version `2.0` - Adding App to manage Config and separate Prebuilt Configs on install + Bug fixes
+`2024-10-22` - Version `2.0-b beta` - Added More logging info, improved fail safe function
+
+`2024-10-22` - Version `2.0-a beta` - Adding separate Prebuilt Configs on install + Bug fixes, Added Fail Safe option
 
 `2023-10-15` - Version `1.3` - Increased Swappiness to fix usage issues
 

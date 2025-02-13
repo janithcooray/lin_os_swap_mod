@@ -3,5 +3,3 @@ name=Lineage OS SWAP mod
 author=janithcooray
 description=Enable / Change Swap config for Android 7+
 template=3
-version=v2.0-a
-versionCode=8
